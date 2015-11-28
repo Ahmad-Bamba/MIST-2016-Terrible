@@ -10,6 +10,10 @@
 #include <string>
 #include <vector>
 
+//TODO: Fatal error! Fix ASAP! MachineOS string is bothersome.
+//Lumpy clumpy clods!
+//std::string MachineOS; //global variable fml
+
 #ifdef _WIN32
    std::string MachineOS = "Windows32";
    #ifdef _WIN64
