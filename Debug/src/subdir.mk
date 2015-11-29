@@ -5,15 +5,18 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/MistInit.cpp \
-../src/MistOperate.cpp 
+../src/MistOperate.cpp \
+../src/Task.cpp 
 
 OBJS += \
 ./src/MistInit.o \
-./src/MistOperate.o 
+./src/MistOperate.o \
+./src/Task.o 
 
 CPP_DEPS += \
 ./src/MistInit.d \
-./src/MistOperate.d 
+./src/MistOperate.d \
+./src/Task.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

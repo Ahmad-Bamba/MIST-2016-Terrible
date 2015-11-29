@@ -12,12 +12,14 @@
 
 //TODO: Fatal error! Fix ASAP! MachineOS string is bothersome.
 //Lumpy clumpy clods!
+
 //std::string MachineOS; //global variable fml
 
 #ifdef _WIN32
-   std::string MachineOS = "Windows32";
-   #ifdef _WIN64
-      MachineOS = "Windows64";
+   //MachineOS = "Windows32";
+	#include "Windows.h"
+	#ifdef _WIN64
+      //MachineOS = "Windows64";
    #endif
 #elif __APPLE__
     #include "TargetConditionals.h"
@@ -26,18 +28,21 @@
     #elif TARGET_OS_IPHONE
 		 #error "Unsupported _APPLE_ device, TARGET_OS_IPHONE"
     #elif TARGET_OS_MAC
-         std::string MachineOS = "MacOSX"
+         //MachineOS = "MacOSX"
     #else
     #   error "Unknown _APPLE_ platform"
     #endif
 #elif __linux__
-    std::string MachineOS = "Linux";
+    //MachineOS = "Linux";
+	#include "sys/types.h";
+	#include "sys/sysinfo.h";
 #elif __unix__ // all unices not caught above
 	#error "_unix_ devices are not supported by this library!"
 #elif defined(_POSIX_VERSION)
 	#error "_POSIX_ devices are not supported by this library!"
 #else
 #   error "Unknown compiler"
+
 #endif
 
 class Mist
@@ -47,7 +52,7 @@ public:
 		//TYPES
 			enum OS{WINDOWS, DEBIANLINUX, MACOSX, FEDORALINUX, OTHER};
 			enum InitInstruction{CREATETHREAD, ALLOCATERAM, GETSYSINFO};
-			enum TaskInstruction{START, PAUSE, STOP, WAIT};
+			enum TaskInstruction{FILE_TRANSFER, ENCRYPT, DECRYPT, PAUSE, STOP, WAIT};
 			enum ProcessorType{AMD64, i386};
 		//STRUCTS
 			struct Machine
@@ -79,7 +84,7 @@ public:
 			};
 		//VECTORS
 			std::vector<Machine> Machines;
-			std::vector<task> Task; //individual Task
+			std::vector<task> Tasks; //individual Task
 		//INT
 			static int maximumThreadsToSystem; //maximum threads that can run
 			static int maximumAllocatedMemory; //maximum amount of memory allowed to be used
@@ -97,7 +102,7 @@ public:
 			~Mist();
 			void InitInstruct(int MachineID, InitInstruction intruction, int param); //sends instruction type with a parameter
 			void AddComputerToArray(std::string IP, OS operatingSystem, int allocatedMemory, int threads); //Adds memory and threads to maximum allocated threads/memory
-			void CreateTask(std::string taskname, int allocatedMemory, int threads, std::vector<std::string> resourcePaths); //creates task
+			void CreateTask(std::string taskname, int allocatedMemory, int threads, std::vector<std::string> resourcePaths, TaskInstruction instruction); //creates task
 			void CreateTaskGroup(std::string taskGroup, std::string taskname, int allocatedMemory, int threads, std::vector<std::string> resourcePaths); //creates task in taskGroup
 			void AddTaskToGroup(std::string taskname, std::string taskGroup); //adds premade task to task group
 		//TASKPHASE
