@@ -13,15 +13,10 @@
 //TODO: Fatal error! Fix ASAP! MachineOS string is bothersome.
 //Lumpy clumpy clods!
 
-enum OS{WIN32, WIN64, MACOSX, UNIX, POSIX, LINUX};
-OS operatingSystem;
-
 #ifdef _WIN32
-   //MachineOS = "Windows32";
 	#include "Windows.h"
 	#ifdef _WIN64
-      //MachineOS = "Windows64";
-	  operatingSystem = WIN64;
+
    #endif
 #elif __APPLE__
     #include "TargetConditionals.h"
@@ -30,14 +25,12 @@ OS operatingSystem;
     #elif TARGET_OS_IPHONE
 		 #error "Unsupported _APPLE_ device, TARGET_OS_IPHONE"
     #elif TARGET_OS_MAC
-         //MachineOS = "MacOSX"
     #else
     #   error "Unknown _APPLE_ platform"
     #endif
 #elif __linux__
 	#include "sys/types.h";
 	#include "sys/sysinfo.h";
-	  operatingSystem = LINUX;
 #elif __unix__ // all unices not caught above
 	#error "_unix_ devices are not supported by this library!"
 #elif defined(_POSIX_VERSION)
@@ -55,6 +48,7 @@ public:
 			enum InitInstruction{CREATETHREAD, ALLOCATERAM, GETSYSINFO};
 			enum TaskInstruction{FILE_TRANSFER, ENCRYPT, DECRYPT, PAUSE, STOP, WAIT};
 			enum ProcessorType{AMD64, i386};
+			enum OS{WIN32, WIN64, MACOSX, UNIX, POSIX, LINUX};
 		//STRUCTS
 			struct Machine
 			{
@@ -101,7 +95,7 @@ public:
 			Mist(int computersInArray, int maxAllocatedRAM, int totalThreads, std::vector<std::string> IPs); //constructs system in memory, assigns max memory and threads to each according to their abilities
 			~Mist();
 			void InitInstruct(int MachineID, InitInstruction intruction, int param); //sends instruction type with a parameter
-			void AddComputerToArray(std::string IP, /*global.OS operatingSystem*/, int allocatedMemory, int threads); //Adds memory and threads to maximum allocated threads/memory
+			void AddComputerToArray(std::string IP, OS MachineOS, int allocatedMemory, int threads); //Adds memory and threads to maximum allocated threads/memory
 			void CreateTask(std::string taskname, int allocatedMemory, int threads, std::vector<std::string> resourcePaths, TaskInstruction instruction); //creates task
 			void CreateTaskGroup(std::string taskGroup, std::string taskname, int allocatedMemory, int threads, std::vector<std::string> resourcePaths); //creates task in taskGroup
 			void AddTaskToGroup(std::string taskname, std::string taskGroup); //adds premade task to task group

@@ -4,19 +4,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/MistInit.cpp \
+../src/Encrypt.cpp \
 ../src/MistOperate.cpp \
 ../src/SysMist.cpp \
 ../src/Task.cpp 
 
 OBJS += \
-./src/MistInit.o \
+./src/Encrypt.o \
 ./src/MistOperate.o \
 ./src/SysMist.o \
 ./src/Task.o 
 
 CPP_DEPS += \
-./src/MistInit.d \
+./src/Encrypt.d \
 ./src/MistOperate.d \
 ./src/SysMist.d \
 ./src/Task.d 
