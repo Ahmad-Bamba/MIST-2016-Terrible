@@ -6,16 +6,19 @@
 CPP_SRCS += \
 ../src/MistInit.cpp \
 ../src/MistOperate.cpp \
+../src/SysMist.cpp \
 ../src/Task.cpp 
 
 OBJS += \
 ./src/MistInit.o \
 ./src/MistOperate.o \
+./src/SysMist.o \
 ./src/Task.o 
 
 CPP_DEPS += \
 ./src/MistInit.d \
 ./src/MistOperate.d \
+./src/SysMist.d \
 ./src/Task.d 
 
 

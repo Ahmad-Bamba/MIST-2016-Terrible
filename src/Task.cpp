@@ -1,5 +1,6 @@
 #include "../Headers/Task.h"
 #include <iostream>
+#include <cstdlib>
 
 Task::Task(std::string tn, int am, int thr, std::vector<std::string> rps, Mist::TaskInstruction ti)
 {
@@ -43,6 +44,28 @@ void Task::start() //when this is finished, call deconstructor and remove task. 
 	}
 	else if (this->Task_Instruction == Mist::DECRYPT)
 	{
-		std::cout << "Starting file transfer...\n";
+		std::cout << "Starting file decryption sequence...\n";
+	}
+	else if (this->Task_Instruction == Mist::ENCRYPT)
+	{
+		std::cout << "Starting encryption sequence...\n";
+	}
+	else if (this->Task_Instruction == Mist::PAUSE)
+	{
+		std::cout << "Paused...\n";
+	}
+	else if (this->Task_Instruction == Mist::STOP)
+	{
+		std::cout << "Operation stopped!\n";
+	}
+	else if (this->Task_Instruction == Mist::WAIT)
+	{
+		std::cout << "Waiting to continue...\n";
+	}
+	else
+	{
+		std::cout << "FATAL ERROR!!!!\n";
+		//cleanup unnecessary objects!
+		std::exit(0);
 	}
 }

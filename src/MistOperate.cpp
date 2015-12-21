@@ -5,7 +5,6 @@
  *      Author: david
  */
 
-#include "../Headers/Mist.h"
-#include "../Headers/Task.h"
+#include "../Headers/MistOperate.h"
 
 

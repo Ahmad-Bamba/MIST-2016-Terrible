@@ -13,13 +13,15 @@
 //TODO: Fatal error! Fix ASAP! MachineOS string is bothersome.
 //Lumpy clumpy clods!
 
-//std::string MachineOS; //global variable fml
+enum OS{WIN32, WIN64, MACOSX, UNIX, POSIX, LINUX};
+OS operatingSystem;
 
 #ifdef _WIN32
    //MachineOS = "Windows32";
 	#include "Windows.h"
 	#ifdef _WIN64
       //MachineOS = "Windows64";
+	  operatingSystem = WIN64;
    #endif
 #elif __APPLE__
     #include "TargetConditionals.h"
@@ -33,9 +35,9 @@
     #   error "Unknown _APPLE_ platform"
     #endif
 #elif __linux__
-    //MachineOS = "Linux";
 	#include "sys/types.h";
 	#include "sys/sysinfo.h";
+	  operatingSystem = LINUX;
 #elif __unix__ // all unices not caught above
 	#error "_unix_ devices are not supported by this library!"
 #elif defined(_POSIX_VERSION)
@@ -50,7 +52,6 @@ class Mist
 public:
 	//VARS
 		//TYPES
-			enum OS{WINDOWS, DEBIANLINUX, MACOSX, FEDORALINUX, OTHER};
 			enum InitInstruction{CREATETHREAD, ALLOCATERAM, GETSYSINFO};
 			enum TaskInstruction{FILE_TRANSFER, ENCRYPT, DECRYPT, PAUSE, STOP, WAIT};
 			enum ProcessorType{AMD64, i386};
@@ -61,7 +62,6 @@ public:
 				int allocatedMemory; //Amount of memory allocated to the machine
 				int threads; //Amount of threads Machine is running
 				std::string MachineName = "DefaultMachineName"; //Name of Machine
-				OS MachineOS; //Machine OS
 				int ping; //Latest ping to machine in ms, measured by the second
 				int averagePing; //Average ping over last 15 seconds
 				std::string OSName; //Version # (i.e. Windows 7), used to identify OTHER
@@ -101,7 +101,7 @@ public:
 			Mist(int computersInArray, int maxAllocatedRAM, int totalThreads, std::vector<std::string> IPs); //constructs system in memory, assigns max memory and threads to each according to their abilities
 			~Mist();
 			void InitInstruct(int MachineID, InitInstruction intruction, int param); //sends instruction type with a parameter
-			void AddComputerToArray(std::string IP, OS operatingSystem, int allocatedMemory, int threads); //Adds memory and threads to maximum allocated threads/memory
+			void AddComputerToArray(std::string IP, /*global.OS operatingSystem*/, int allocatedMemory, int threads); //Adds memory and threads to maximum allocated threads/memory
 			void CreateTask(std::string taskname, int allocatedMemory, int threads, std::vector<std::string> resourcePaths, TaskInstruction instruction); //creates task
 			void CreateTaskGroup(std::string taskGroup, std::string taskname, int allocatedMemory, int threads, std::vector<std::string> resourcePaths); //creates task in taskGroup
 			void AddTaskToGroup(std::string taskname, std::string taskGroup); //adds premade task to task group
