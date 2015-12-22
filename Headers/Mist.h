@@ -48,7 +48,7 @@ public:
 			enum InitInstruction{CREATETHREAD, ALLOCATERAM, GETSYSINFO};
 			enum TaskInstruction{FILE_TRANSFER, ENCRYPT, DECRYPT, PAUSE, STOP, WAIT};
 			enum ProcessorType{AMD64, i386};
-			enum OS{WIN32, WIN64, MACOSX, UNIX, POSIX, LINUX};
+			enum OS{WIN32, WIN64, MACOSX, UNIX, POSIX, LINUX, OTHER};
 		//STRUCTS
 			struct Machine
 			{
@@ -87,6 +87,8 @@ public:
 			static int threadsAllocatedToMachine; //threads allocated to this machine
 
 			static int masterMachineID; //position of master machine in memory
+		//OTHER
+			OS currentOS;
 		//BOOL
 			static bool machineIsMaster; //is this machine master?
 
@@ -95,7 +97,7 @@ public:
 			Mist(int computersInArray, int maxAllocatedRAM, int totalThreads, std::vector<std::string> IPs); //constructs system in memory, assigns max memory and threads to each according to their abilities
 			~Mist();
 			void InitInstruct(int MachineID, InitInstruction intruction, int param); //sends instruction type with a parameter
-			void AddComputerToArray(std::string IP, OS MachineOS, int allocatedMemory, int threads); //Adds memory and threads to maximum allocated threads/memory
+			void AddComputerToArray(std::string IP, OS thisOS, int allocatedMemory, int threads); //Adds memory and threads to maximum allocated threads/memory
 			void CreateTask(std::string taskname, int allocatedMemory, int threads, std::vector<std::string> resourcePaths, TaskInstruction instruction); //creates task
 			void CreateTaskGroup(std::string taskGroup, std::string taskname, int allocatedMemory, int threads, std::vector<std::string> resourcePaths); //creates task in taskGroup
 			void AddTaskToGroup(std::string taskname, std::string taskGroup); //adds premade task to task group

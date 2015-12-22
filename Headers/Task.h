@@ -2,6 +2,7 @@
 #define TASK_HEADERS_MIST_H_
 
 #include "Mist.h"
+#include "Encrypt.h"
 #include <string>
 
 class Task
@@ -25,6 +26,7 @@ private:
 	int Threads;
 	Mist::TaskInstruction Task_Instruction;
 	std::vector<std::string> Resource_Paths;
+	Encrypt* encrypt;
 };
 
 #endif

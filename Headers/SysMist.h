@@ -8,6 +8,11 @@ class SysMist: Mist{
 private:
 
 public:
+	SysMist();
+	~SysMist();
+
+	void setOS();
+	Mist::OS getOS();
 
 };
 

@@ -6,7 +6,7 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
-#include "Encrypt.h"
+#include "../Headers/Encrypt.h"
 //TODO why does this delete the file when it opens?
 
 using namespace std;
