@@ -4,6 +4,7 @@
 
 Task::Task(std::string tn, int am, int thr, std::vector<std::string> rps, Mist::TaskInstruction ti)
 {
+	encrypt = new Encrypt();
 	Task_Name        = tn;
 	Allocated_Memory = am;
 	Threads          = thr;
@@ -49,6 +50,7 @@ void Task::start() //when this is finished, call deconstructor and remove task. 
 	else if (this->Task_Instruction == Mist::ENCRYPT)
 	{
 		std::cout << "Starting encryption sequence...\n";
+		encrypt->EncryptFile(1,1,1); // Example. We can pass down values while running.
 	}
 	else if (this->Task_Instruction == Mist::PAUSE)
 	{

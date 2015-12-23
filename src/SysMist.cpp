@@ -1,10 +1,13 @@
 #include "../Headers/SysMist.h"
 
 
-SysMist::SysMist(){
+/*SysMist::SysMist(){
 
 }
-SysMist::~SysMist();
+
+SysMist::~SysMist(){
+
+}*/
 
 //In your program. This function needs to be run first!
 
