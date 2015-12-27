@@ -11,7 +11,6 @@ private:
 public:
 	void setOS();
 	Mist::OS getOS();
-
 };
 
 #endif
