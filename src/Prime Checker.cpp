@@ -8,6 +8,21 @@
 
 #include "PrimeChecker.h"
 
+int main() {
+	PrimeCheck * checkers;
+	checkers = new PrimeCheck();
+	bool trueScienceFact;
+	//checkers->check = 2;
+	trueScienceFact = checkers->checkPrimeTheHardWay(8);
+	if(trueScienceFact)
+	{
+		printf("It's Prime!");
+	}
+	else if(!trueScienceFact)
+	{
+		printf("Not a prime...");
+	}
+}
 
 bool PrimeCheck::checkPrimeTheHardWay(long long int number)
 {
@@ -21,6 +36,8 @@ bool PrimeCheck::checkPrimeTheHardWay(long long int number)
 		}else if(number % check == 0){
 			numberIsPrime = false;
 		}
+		check++;
+		printf("Checking with %i \n", check);
 	}
 	return numberIsPrime;
 }
@@ -28,14 +45,4 @@ bool PrimeCheck::checkPrimeTheHardWay(long long int number)
 bool PrimeCheck::checkPrimeTheEasyWay(long long int number)
 {
 	return true;
-}
-
-int main() {
-	PrimeCheck * check;
-	bool trueScienceFact;
-	trueScienceFact = check->checkPrimeTheHardWay(184467440741);
-	if(trueScienceFact)
-	{
-		printf("It's Prime!");
-	}
 }
