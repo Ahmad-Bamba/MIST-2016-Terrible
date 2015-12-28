@@ -5,6 +5,7 @@
 Task::Task(std::string tn, int am, int thr, std::vector<std::string> rps, Mist::TaskInstruction ti)
 {
 	encrypt = new Encrypt();
+	//checkprime = new CheckPrimeTheHardWay();
 	Task_Name        = tn;
 	Allocated_Memory = am;
 	Threads          = thr;
@@ -63,6 +64,11 @@ void Task::start() //when this is finished, call deconstructor and remove task. 
 	else if (this->Task_Instruction == Mist::WAIT)
 	{
 		std::cout << "Waiting to continue...\n";
+	}
+	else if (this->Task_Instruction == Mist::PRIME_OPERATION)
+	{
+		std::cout << "Beginning prime operation.";
+		//checkprime->run //or something like that!
 	}
 	else
 	{

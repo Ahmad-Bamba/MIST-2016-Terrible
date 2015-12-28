@@ -3,6 +3,7 @@
 
 #include "Mist.h"
 #include "Encrypt.h"
+//#include "PrimeChecker.h"
 #include <string>
 
 class Task
@@ -27,6 +28,7 @@ private:
 	Mist::TaskInstruction Task_Instruction;
 	std::vector<std::string> Resource_Paths;
 	Encrypt* encrypt;
+	//CheckPrimeTheHardWay* checkprime;
 };
 
 #endif
