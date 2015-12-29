@@ -13,7 +13,7 @@ int main() {
 	checkers = new PrimeCheck();
 	bool trueScienceFact;
 	//checkers->check = 2;
-	trueScienceFact = checkers->checkPrimeTheHardWay(8);
+	trueScienceFact = checkers->checkPrimeTheHardWay(10000019 /*Can be any prime*/);
 	if(trueScienceFact)
 	{
 		printf("It's Prime!");
