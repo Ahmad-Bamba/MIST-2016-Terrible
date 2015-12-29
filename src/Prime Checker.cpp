@@ -46,3 +46,5 @@ bool PrimeCheck::checkPrimeTheEasyWay(long long int number)
 {
 	return true;
 }
+
+//comment
