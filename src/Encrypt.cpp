@@ -11,17 +11,17 @@
 
 using namespace std;
 
-int main() {
+/*int main() {
 	Encrypt * EncryptTest = new Encrypt;
 	EncryptTest->EncryptFile(5, 50, 100);
-	/*std::string print;
+	std::string print;
 	print.assign(EncryptTest->EncryptFile(5, 128, 5));
 	ofstream outPut;
 	outPut.open("text.txt");
 	int outPutLength = print.length();
-	outPut.close();*/
+	outPut.close();
 	return 0;
-}
+}*/
 
 Encrypt::Encrypt()
 {
