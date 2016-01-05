@@ -13,14 +13,14 @@ int main() {
 	checkers = new PrimeCheck();
 	bool trueScienceFact;
 	//checkers->check = 2;
-	trueScienceFact = checkers->checkPrimeTheHardWay(10000019 /*Can be any prime*/);
+	trueScienceFact = checkers->checkPrimeTheHardWay(1000000007 /*Can be any prime*/);
 	if(trueScienceFact)
 	{
-		printf("It's Prime!");
+		printf("It's Prime!\n");
 	}
 	else if(!trueScienceFact)
 	{
-		printf("Not a prime...");
+		printf("Not a prime...\n");
 	}
 }
 
@@ -37,7 +37,7 @@ bool PrimeCheck::checkPrimeTheHardWay(long long int number)
 			numberIsPrime = false;
 		}
 		check++;
-		printf("Checking with %i \n", check);
+		//printf("Checking with %i \n", check);
 	}
 	return numberIsPrime;
 }
