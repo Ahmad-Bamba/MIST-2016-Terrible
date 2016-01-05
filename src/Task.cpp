@@ -70,7 +70,7 @@ void Task::start() //when this is finished, call deconstructor and remove task. 
 		std::cout << "Beginning prime operation...\n";
 
 		primecheck->check = 2;
-		primecheck->checkFull(200000033); //any number will do
+		primecheck->checkFull(1000000007); //any number will do
 
 		bool whilestopper = true;
 
