@@ -2,14 +2,14 @@
 #include <iostream>
 #include <cstdlib>
 
-Task::Task(std::string tn, int am, int thr, std::vector<std::string> rps, Mist::TaskInstruction ti)
+Task::Task(std::string tn, /*int am, int thr, std::vector<std::string> rps, */Mist::TaskInstruction ti)
 {
 	encrypt = new Encrypt();
 	//checkprime = new CheckPrimeTheHardWay();
 	Task_Name        = tn;
-	Allocated_Memory = am;
-	Threads          = thr;
-	Resource_Paths   = rps;
+	//Allocated_Memory = am;
+	//Threads          = thr;
+	//Resource_Paths   = rps;
 	Task_Instruction = ti;
 }
 

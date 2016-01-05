@@ -29,8 +29,8 @@
     #   error "Unknown _APPLE_ platform"
     #endif
 #elif __linux__
-	#include "sys/types.h";
-	#include "sys/sysinfo.h";
+	#include "sys/types.h"
+	#include "sys/sysinfo.h"
 #elif __unix__ // all unices not caught above
 	#error "_unix_ devices are not supported by this library!"
 #elif defined(_POSIX_VERSION)

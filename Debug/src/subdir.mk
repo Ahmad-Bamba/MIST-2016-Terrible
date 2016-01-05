@@ -7,6 +7,7 @@ CPP_SRCS += \
 ../src/Encrypt.cpp \
 ../src/MistOperate.cpp \
 ../src/Prime\ Checker.cpp \
+../src/Program.cpp \
 ../src/SysMist.cpp \
 ../src/Task.cpp 
 
@@ -14,6 +15,7 @@ OBJS += \
 ./src/Encrypt.o \
 ./src/MistOperate.o \
 ./src/Prime\ Checker.o \
+./src/Program.o \
 ./src/SysMist.o \
 ./src/Task.o 
 
@@ -21,6 +23,7 @@ CPP_DEPS += \
 ./src/Encrypt.d \
 ./src/MistOperate.d \
 ./src/Prime\ Checker.d \
+./src/Program.d \
 ./src/SysMist.d \
 ./src/Task.d 
 
