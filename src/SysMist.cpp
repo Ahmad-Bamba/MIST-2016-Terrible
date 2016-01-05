@@ -11,14 +11,6 @@ SysMist::~SysMist(){
 
 //In your program. This function needs to be run first!
 
-Mist::Mist(/*int computersInArray, int maxAllocatedRAM, int totalThreads, std::vector<std::string> IPs*/){
-
-}
-
-SysMist::SysMist(){
-	//Bob the Builder!
-}
-
 void SysMist::setOS(){
 	#ifdef _WIN32
 	Mist::currentOS = Mist::WIN32;

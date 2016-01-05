@@ -2,14 +2,14 @@
 #include <iostream>
 #include <cstdlib>
 
-Task::Task(std::string tn, /* int am, int thr, std::vector<std::string> rps, */ Mist::TaskInstruction ti)
+Task::Task(std::string tn, int am, int thr, std::vector<std::string> rps, Mist::TaskInstruction ti)
 {
 	encrypt = new Encrypt();
-	primecheck = new PrimeCheck();
+	//checkprime = new CheckPrimeTheHardWay();
 	Task_Name        = tn;
-	//Allocated_Memory = am;
-	//Threads          = thr;
-	//Resource_Paths   = rps;
+	Allocated_Memory = am;
+	Threads          = thr;
+	Resource_Paths   = rps;
 	Task_Instruction = ti;
 }
 
@@ -23,7 +23,7 @@ Mist::TaskInstruction Task::getTaskInstruction()
 	return Task_Instruction;
 }
 
-/*int Task::getAllocatedMemory()
+int Task::getAllocatedMemory()
 {
 	return Allocated_Memory;
 }
@@ -36,7 +36,7 @@ int Task::getThreadNumber()
 std::vector<std::string> Task::getResourcePaths()
 {
 	return Resource_Paths;
-}*/
+}
 
 void Task::start() //when this is finished, call deconstructor and remove task. We can only do one file at a time.
 {
@@ -67,28 +67,8 @@ void Task::start() //when this is finished, call deconstructor and remove task. 
 	}
 	else if (this->Task_Instruction == Mist::PRIME_OPERATION)
 	{
-		std::cout << "Beginning prime operation...";
-
-		primecheck->check = 2;
-		primecheck->checkFull(10000019); //any number will do
-
-		bool whilestopper = true;
-
-		while (whilestopper) //make sure the everything is done before analysis
-		{
-			if(primecheck->primebits.size() == 2)
-			{
-
-				if(std::all_of(primecheck->primebits.begin(), primecheck->primebits.end(), [](bool v) { return v; })){
-					printf("It's Prime!");
-				}
-				else
-				{
-					printf("Not a prime...");
-				}
-				whilestopper = false;
-			}
-		}
+		std::cout << "Beginning prime operation.";
+		//checkprime->run //or something like that!
 	}
 	else
 	{

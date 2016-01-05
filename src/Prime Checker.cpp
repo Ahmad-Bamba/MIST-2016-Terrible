@@ -24,52 +24,22 @@
 	}
 }*/
 
-void PrimeCheck::checkFull(long long int number)
-{
-	std::thread t1(&PrimeCheck::checkFirstHalf, this, number);
-	std::thread t2(&PrimeCheck::checkSecondHalf, this, number);
-
-	t1.join();
-	t2.join();
-}
-
-void PrimeCheck::checkFirstHalf(long long int number)
+bool PrimeCheck::checkPrimeTheHardWay(long long int number)
 {
 	bool numberIsPrime = new bool;
 	numberIsPrime = true;
-	while(check < int(number/2) && numberIsPrime == true)
+	while(check < number && numberIsPrime == true)
 	{
-		if(int(number/2) % check != 0)
+		if(number % check != 0)
 		{
 
-		}else if(int(number/2) % check == 0){
+		}else if(number % check == 0){
 			numberIsPrime = false;
 		}
 		check++;
-		//printf("Checking with %lli \n", check);
+		printf("Checking with %lli \n", check);
 	}
-
-	primebits.push_back(numberIsPrime); //report the results
-}
-
-void PrimeCheck::checkSecondHalf(long long int number)
-{
-	bool numberIsPrime = new bool;
-	numberIsPrime = true;
-	check2 = int(number/2); //start at half
-	while(check2 < number && numberIsPrime == true)
-	{
-		if(number % check2 != 0)
-		{
-
-		}else if(number % check2 == 0){
-			numberIsPrime = false;
-		}
-		check++;
-		//printf("Checking with %lli \n", check);
-	}
-
-	primebits.push_back(numberIsPrime); //report the results
+	return numberIsPrime;
 }
 
 bool PrimeCheck::checkPrimeTheEasyWay(long long int number)

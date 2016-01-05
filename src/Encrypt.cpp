@@ -48,7 +48,7 @@ std::string Encrypt::EncryptFile(int sectorLength, int seed, int runs)
 	cout << length << endl;
 	//TODO fix this so it reads chars right, needs null terminator
 	char * fileBuf =  new char [length+1];
-	//int it;
+	int it;
 	file.read(fileBuf, length);
 	Buf = fileBuf;
 	int cyclesRun = 0;

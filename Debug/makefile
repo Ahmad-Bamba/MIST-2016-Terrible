@@ -38,19 +38,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: libMIST-Library-Package
+all: MIST-Library-Package
 
 # Tool invocations
-libMIST-Library-Package: $(OBJS) $(USER_OBJS)
+MIST-Library-Package: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -Wl,--no-as-needed -pthread -shared -o "libMIST-Library-Package" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++  -o "MIST-Library-Package" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C++_DEPS)$(C_DEPS)$(CC_DEPS)$(LIBRARIES)$(CPP_DEPS)$(CXX_DEPS)$(C_UPPER_DEPS) libMIST-Library-Package
+	-$(RM) $(OBJS)$(C++_DEPS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) MIST-Library-Package
 	-@echo ' '
 
 .PHONY: all clean dependents

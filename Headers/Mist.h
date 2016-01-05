@@ -29,8 +29,8 @@
     #   error "Unknown _APPLE_ platform"
     #endif
 #elif __linux__
-	#include "sys/types.h"
-	#include "sys/sysinfo.h"
+	#include "sys/types.h";
+	#include "sys/sysinfo.h";
 #elif __unix__ // all unices not caught above
 	#error "_unix_ devices are not supported by this library!"
 #elif defined(_POSIX_VERSION)
@@ -94,7 +94,7 @@ public:
 
 	//FUNCTIONS
 		//INIT
-			Mist(/*int computersInArray, int maxAllocatedRAM, int totalThreads, std::vector<std::string> IPs*/); //constructs system in memory, assigns max memory and threads to each according to their abilities
+			Mist(int computersInArray, int maxAllocatedRAM, int totalThreads, std::vector<std::string> IPs); //constructs system in memory, assigns max memory and threads to each according to their abilities
 			~Mist();
 			void InitInstruct(int MachineID, InitInstruction intruction, int param); //sends instruction type with a parameter
 			void AddComputerToArray(std::string IP, OS thisOS, int allocatedMemory, int threads); //Adds memory and threads to maximum allocated threads/memory
