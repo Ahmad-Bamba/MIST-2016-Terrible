@@ -32,14 +32,14 @@ CPP_DEPS += \
 src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -std=c++0x -D__GXX_EXPERIMENTAL_CXX0X__ -O2 -g -Wall -c -fmessage-length=0 -std=c++11  -pthread -Wl,--whole-archive -lpthread -Wl,--no-whole-archive -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -std=c++0x -D__GXX_EXPERIMENTAL_CXX0X__ -O2 -g -Wall -c -fmessage-length=0 -std=c++11  -pthread -Wl,--whole-archive -lpthread -Wl,--no-whole-archive -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 src/Prime\ Checker.o: ../src/Prime\ Checker.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -std=c++0x -D__GXX_EXPERIMENTAL_CXX0X__ -O2 -g -Wall -c -fmessage-length=0 -std=c++11  -pthread -Wl,--whole-archive -lpthread -Wl,--no-whole-archive -MMD -MP -MF"src/Prime Checker.d" -MT"src/Prime\ Checker.d" -o "$@" "$<"
+	g++ -std=c++0x -D__GXX_EXPERIMENTAL_CXX0X__ -O2 -g -Wall -c -fmessage-length=0 -std=c++11  -pthread -Wl,--whole-archive -lpthread -Wl,--no-whole-archive -fPIC -MMD -MP -MF"src/Prime Checker.d" -MT"src/Prime\ Checker.d" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

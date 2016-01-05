@@ -67,26 +67,29 @@ void Task::start() //when this is finished, call deconstructor and remove task. 
 	}
 	else if (this->Task_Instruction == Mist::PRIME_OPERATION)
 	{
-		std::cout << "Beginning prime operation...";
+		std::cout << "Beginning prime operation...\n";
 
 		primecheck->check = 2;
-		primecheck->checkFull(10000019); //any number will do
+		primecheck->checkFull(200000033); //any number will do
 
 		bool whilestopper = true;
 
 		while (whilestopper) //make sure the everything is done before analysis
 		{
+			printf("Waiting for threads to complete...\n");
+
 			if(primecheck->primebits.size() == 2)
 			{
+				whilestopper = false;
 
-				if(std::all_of(primecheck->primebits.begin(), primecheck->primebits.end(), [](bool v) { return v; })){
-					printf("It's Prime!");
+				if(std::all_of(primecheck->primebits.begin(), primecheck->primebits.end(), [](bool v) { return v; }))
+				{
+					printf("It's Prime!\n");
 				}
 				else
 				{
-					printf("Not a prime...");
+					printf("Not a prime...\n");
 				}
-				whilestopper = false;
 			}
 		}
 	}
