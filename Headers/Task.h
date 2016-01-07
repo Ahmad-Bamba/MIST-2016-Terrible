@@ -10,14 +10,14 @@ class Task
 {
 	friend class Mist;
 public:
-	Task(std::string tn, int am, int thr, std::vector<std::string> rps, Mist::TaskInstruction ti); //std::string taskname, int allocatedMemory, int threads, std::vector<std::string> resourcePaths
+	Task(std::string tn, /* int am, int thr, std::vector<std::string> rps, */ Mist::TaskInstruction ti); //std::string taskname, int allocatedMemory, int threads, std::vector<std::string> resourcePaths
 	~Task();
 	std::string getTaskName();
 
 	Mist::TaskInstruction getTaskInstruction();
-	int getAllocatedMemory(); //amount of RAM needed for task
-	int getThreadNumber();
-	std::vector<std::string> getResourcePaths();
+	//int getAllocatedMemory(); //amount of RAM needed for task
+	//int getThreadNumber();
+	//std::vector<std::string> getResourcePaths();
 
 	void start();
 

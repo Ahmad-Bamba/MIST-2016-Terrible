@@ -4,23 +4,32 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/Client.cpp \
 ../src/Encrypt.cpp \
 ../src/MistOperate.cpp \
 ../src/Prime\ Checker.cpp \
+../src/Program.cpp \
+../src/Server.cpp \
 ../src/SysMist.cpp \
 ../src/Task.cpp 
 
 OBJS += \
+./src/Client.o \
 ./src/Encrypt.o \
 ./src/MistOperate.o \
 ./src/Prime\ Checker.o \
+./src/Program.o \
+./src/Server.o \
 ./src/SysMist.o \
 ./src/Task.o 
 
 CPP_DEPS += \
+./src/Client.d \
 ./src/Encrypt.d \
 ./src/MistOperate.d \
 ./src/Prime\ Checker.d \
+./src/Program.d \
+./src/Server.d \
 ./src/SysMist.d \
 ./src/Task.d 
 
@@ -29,14 +38,14 @@ CPP_DEPS += \
 src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -I"/home/bazebadger/Programming/Serious Business/workspace/MIST-Library-Package/Headers/boost_1_60_0" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 src/Prime\ Checker.o: ../src/Prime\ Checker.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Prime Checker.d" -MT"src/Prime\ Checker.d" -o "$@" "$<"
+	g++ -I"/home/bazebadger/Programming/Serious Business/workspace/MIST-Library-Package/Headers/boost_1_60_0" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Prime Checker.d" -MT"src/Prime\ Checker.d" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
