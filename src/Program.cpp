@@ -10,80 +10,80 @@
 #include <string>
 #include <boost/asio.hpp>
 #include <boost/array.hpp>
+#include <iterator>
 
 #include "../Headers/Mist.h"
 #include "../Headers/Task.h"
 
 using boost::asio::ip::tcp;
 
-std::vector<std::string> dummyIP;
-Mist* mist = new Mist(2, 16000, 2, dummyIP);
-
 //client model
-int main()
+int main(int argc, char* argv[])
 {
-	Mist::TaskInstruction instruction;
-
-	try
-	{
-	    boost::asio::io_service clio_service;
-
-	    tcp::resolver resolver(clio_service);
-	    tcp::resolver::query query("daytime");
-	    tcp::resolver::iterator endpoint_iterator = resolver.resolve(query);
-
-	    tcp::socket socket(clio_service);
-	    boost::asio::connect(socket, endpoint_iterator);
-
-	    bool is_connected = false;
-
-	    while(!is_connected)
+	  try
+	  {
+	    if (argc != 2)
 	    {
-	    	socket.read_some(instruction);
-	    	switch(instruction)
-	    	{
-	    	case Mist::PRIME_OPERATION:
-	    		//do stuff
-	    		printf("Found PRIME_OPERATION at the connection");
-	    		is_connected = true;
-	    		break;
-	    	//case Mist::[Some other type]
-	    	default:
-	    		printf("Found nothing at the connection \n");
-	    		break;
-	    	}
+	      std::cerr << "Usage: client <host>" << std::endl;
+	      return 1;
 	    }
 
-	    Task* task = new Task("Client Task", instruction);
-	    task->start();
+	    boost::asio::io_service io_service;
 
-	}
-	catch(std::exception& e)
-	{
+	    tcp::resolver resolver(io_service);
+	    tcp::resolver::query query(argv[1], "daytime");
+	    tcp::resolver::iterator endpoint_iterator = resolver.resolve(query);
 
-	}
+	    tcp::socket socket(io_service);
+	    boost::asio::connect(socket, endpoint_iterator);
+
+	    for (;;)
+	    {
+	      boost::array<char, 64> buf;
+	      boost::system::error_code error;
+
+	      size_t len = socket.read_some(boost::asio::buffer(buf), error);
+
+	      if (error == boost::asio::error::eof)
+	        break; // Connection closed cleanly by peer.
+	      else if (error)
+	        throw boost::system::system_error(error); // Some other error.
+
+	      std::cout.write(buf.data(), len);
+	    }
+	  }
+	  catch (std::exception& e)
+	  {
+	    std::cerr << e.what() << std::endl;
+	  }
+
+	  return 0;
 }
 
 //server model
 int main2()
 {
-	try
-	{
-		boost::asio::io_service svio_service;
+	  try
+	  {
+	    boost::asio::io_service io_service;
 
-	    tcp::acceptor acceptor(svio_service, tcp::endpoint(tcp::v4(), 13));
+	    tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), 13));
 
-	    while(true)
+	    for (;;)
 	    {
-	        tcp::socket svsocket(svio_service);
-	        acceptor.accept(svsocket);
-	        boost::system::error_code ignored_error;
-	        boost::asio::write(svsocket, mist->PRIME_OPERATION, ignored_error);
+	      tcp::socket socket(io_service);
+	      acceptor.accept(socket);
+
+	      std::string instruction = "PRIME_OPERATOR";
+
+	      boost::system::error_code ignored_error;
+	      boost::asio::write(socket, boost::asio::buffer(instruction), ignored_error);
 	    }
-	}
+	  }
 	  catch (std::exception& e)
 	  {
 	    std::cerr << e.what() << std::endl;
 	  }
-}
 
+	  return 0;
+}
