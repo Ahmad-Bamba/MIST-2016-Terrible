@@ -17,6 +17,13 @@
 
 using boost::asio::ip::tcp;
 
+std::string message;
+
+void callTask()
+{
+
+}
+
 //client model
 int main(int argc, char* argv[])
 {
@@ -27,6 +34,8 @@ int main(int argc, char* argv[])
 	      std::cerr << "Usage: client <host>" << std::endl;
 	      return 1;
 	    }
+
+	    printf("Passed argc != 2 \n");
 
 	    boost::asio::io_service io_service;
 
@@ -50,6 +59,18 @@ int main(int argc, char* argv[])
 	        throw boost::system::system_error(error); // Some other error.
 
 	      std::cout.write(buf.data(), len);
+	      std::copy(buf.begin(), buf.begin()+63, std::back_inserter(message));
+
+	  	bool messageRecieved = false;
+
+	  	while(!messageRecieved)
+	  	{
+	  		if(message == "PRIME_OPERATION")
+	  		{
+	  			Task* task = new Task("Client task", Mist::PRIME_OPERATION);
+	  		}
+	  	}
+
 	    }
 	  }
 	  catch (std::exception& e)
@@ -61,7 +82,7 @@ int main(int argc, char* argv[])
 }
 
 //server model
-int main2()
+/*int main2()
 {
 	  try
 	  {
@@ -87,3 +108,4 @@ int main2()
 
 	  return 0;
 }
+*/
