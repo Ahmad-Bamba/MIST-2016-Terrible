@@ -18,7 +18,7 @@
 using boost::asio::ip::tcp;
 
 //client model
-int main(int argc, char* argv[])
+/*int main(int argc, char* argv[])
 {
 	  try
 	  {
@@ -27,6 +27,7 @@ int main(int argc, char* argv[])
 	      std::cerr << "Usage: client <host>" << std::endl;
 	      return 1;
 	    }
+
 
 	    boost::asio::io_service io_service;
 
@@ -58,32 +59,39 @@ int main(int argc, char* argv[])
 	  }
 
 	  return 0;
-}
+}*/
 
 //server model
-int main2()
+int main()
 {
-	  try
-	  {
-	    boost::asio::io_service io_service;
+    Task* task = new Task("Task 1 - Server", Mist::PRIME_OPERATION);
+    task->start();
 
-	    tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), 13));
+  try
+  {
+	std::cout << "debugging" << std::endl;
 
-	    for (;;)
-	    {
-	      tcp::socket socket(io_service);
-	      acceptor.accept(socket);
+    boost::asio::io_service io_service;
+    tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), 5000));
 
-	      std::string instruction = "PRIME_OPERATOR";
+    for (;;)
+    {
+      tcp::socket socket(io_service);
+      acceptor.accept(socket);
+      std::cout << "Socket accepted!" << std::endl;
+      std::string message = "PRIME_OPERATION";
 
-	      boost::system::error_code ignored_error;
-	      boost::asio::write(socket, boost::asio::buffer(instruction), ignored_error);
-	    }
-	  }
-	  catch (std::exception& e)
-	  {
-	    std::cerr << e.what() << std::endl;
-	  }
+      boost::system::error_code ignored_error;
+      boost::asio::write(socket, boost::asio::buffer(message), ignored_error);
+      std::cout << "written" << std::endl;
 
-	  return 0;
+
+    }
+  }
+  catch (std::exception& e)
+  {
+    std::cerr << e.what() << std::endl;
+  }
+
+  return 0;
 }

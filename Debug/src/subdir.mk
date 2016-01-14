@@ -4,32 +4,26 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/Client.cpp \
 ../src/Encrypt.cpp \
 ../src/MistOperate.cpp \
 ../src/Prime\ Checker.cpp \
 ../src/Program.cpp \
-../src/Server.cpp \
 ../src/SysMist.cpp \
 ../src/Task.cpp 
 
 OBJS += \
-./src/Client.o \
 ./src/Encrypt.o \
 ./src/MistOperate.o \
 ./src/Prime\ Checker.o \
 ./src/Program.o \
-./src/Server.o \
 ./src/SysMist.o \
 ./src/Task.o 
 
 CPP_DEPS += \
-./src/Client.d \
 ./src/Encrypt.d \
 ./src/MistOperate.d \
 ./src/Prime\ Checker.d \
 ./src/Program.d \
-./src/Server.d \
 ./src/SysMist.d \
 ./src/Task.d 
 

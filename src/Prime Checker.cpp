@@ -24,22 +24,30 @@
 	}
 }*/
 
-bool PrimeCheck::checkPrimeTheHardWay(long long int number)
+void PrimeCheck::checkSecondHalf(uint64_t number)
 {
-	bool numberIsPrime = new bool;
-	numberIsPrime = true;
-	while(check < number && numberIsPrime == true)
-	{
-		if(number % check != 0)
-		{
+	std::cout << "Called checkSecondHalf()" << std::endl;
 
-		}else if(number % check == 0){
-			numberIsPrime = false;
+	bool numberIsPrime2;
+	numberIsPrime2 = true;
+	uint64_t check2 = number/2;
+
+	while(check2 < number && numberIsPrime2 == true)
+	{
+		if(number % check2 == 0){
+			numberIsPrime2 = false;
 		}
-		check++;
-		printf("Checking with %lli \n", check);
+		else{
+			numberIsPrime2 = true;
+		}
+		check2++;
+
 	}
-	return numberIsPrime;
+
+	if(numberIsPrime2)
+		std::cout << "PrimeCheck returned prime" << std::endl;
+	else
+		std::cout << "Not prime!" << std::endl;
 }
 
 bool PrimeCheck::checkPrimeTheEasyWay(long long int number)

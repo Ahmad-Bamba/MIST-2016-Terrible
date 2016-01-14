@@ -67,8 +67,8 @@ void Task::start() //when this is finished, call deconstructor and remove task. 
 	}
 	else if (this->Task_Instruction == Mist::PRIME_OPERATION)
 	{
-		std::cout << "Beginning prime operation.";
-		//checkprime->run //or something like that!
+		std::cout << "Beginning prime operation." << std::endl;
+		checkprime->checkSecondHalf(/*1000000007*/11);
 	}
 	else
 	{
