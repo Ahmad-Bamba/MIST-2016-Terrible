@@ -40,6 +40,8 @@ std::vector<std::string> Task::getResourcePaths()
 
 void Task::start() //when this is finished, call deconstructor and remove task. We can only do one file at a time.
 {
+	std::cout << "Task::start()\n";
+
 	if (this->Task_Instruction == Mist::FILE_TRANSFER)
 	{
 		std::cout << "Starting file transfer...\n";
@@ -67,8 +69,8 @@ void Task::start() //when this is finished, call deconstructor and remove task. 
 	}
 	else if (this->Task_Instruction == Mist::PRIME_OPERATION)
 	{
-		std::cout << "Beginning prime operation.";
-		//checkprime->run //or something like that!
+		std::cout << "Beginning prime operation." << std::endl;
+		checkprime->checkFirstHalf(/*1000000007*/11);
 	}
 	else
 	{

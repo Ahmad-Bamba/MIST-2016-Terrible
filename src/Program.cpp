@@ -17,6 +17,7 @@
 
 using boost::asio::ip::tcp;
 
+std::string sub;
 std::string message;
 
 void callTask()
@@ -29,18 +30,19 @@ int main(int argc, char* argv[])
 {
 	  try
 	  {
-	    if (argc != 2)
+	    /*if (argc != 2)
 	    {
 	      std::cerr << "Usage: client <host>" << std::endl;
 	      return 1;
-	    }
+	    }*/
 
-	    printf("Passed argc != 2 \n");
+	    //printf("Passed argc != 2 \n");
+		std::cout << "Started" << std::endl;
 
 	    boost::asio::io_service io_service;
 
 	    tcp::resolver resolver(io_service);
-	    tcp::resolver::query query(argv[1], "daytime");
+	    tcp::resolver::query query(tcp::v4(), "192.168.1.7", "5000");
 	    tcp::resolver::iterator endpoint_iterator = resolver.resolve(query);
 
 	    tcp::socket socket(io_service);
@@ -60,16 +62,20 @@ int main(int argc, char* argv[])
 
 	      std::cout.write(buf.data(), len);
 	      std::copy(buf.begin(), buf.begin()+63, std::back_inserter(message));
+	      std::cout << "Translating to string." << std::endl;
 
 	  	bool messageRecieved = false;
 
-	  	while(!messageRecieved)
-	  	{
-	  		if(message == "PRIME_OPERATION")
+	  		while(!messageRecieved)
 	  		{
-	  			Task* task = new Task("Client task", Mist::PRIME_OPERATION);
+	  			if(message.find("PRIME_OPERATION") != std::string::npos)
+	  			{
+	  				std::cout << "'PRIME_OPERATION' found." << std::endl;
+	  				Task* task = new Task("Client task", Mist::PRIME_OPERATION);
+	  				task->start();
+	  				messageRecieved = true;
+	  			}
 	  		}
-	  	}
 
 	    }
 	  }
@@ -95,7 +101,7 @@ int main(int argc, char* argv[])
 	      tcp::socket socket(io_service);
 	      acceptor.accept(socket);
 
-	      std::string instruction = "PRIME_OPERATOR";
+	      std::string instruction = "PRIME_OPERATION";
 
 	      boost::system::error_code ignored_error;
 	      boost::asio::write(socket, boost::asio::buffer(instruction), ignored_error);
